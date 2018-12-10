@@ -130,7 +130,8 @@ func main() {
 		os.Exit(1)
 	}
 
-	monitoringCollector, err := collectors.NewMonitoringCollector(*projectID, metricsTypePrefixes, *monitoringMetricsInterval, *monitoringMetricsOffset, monitoringService, *collectorFillMissingLabels, *monitoringDropDelegatedProjects)
+	var monitoringCollector prometheus.Collector
+	monitoringCollector, err = collectors.NewMonitoringCollector(*projectID, metricsTypePrefixes, *monitoringMetricsInterval, *monitoringMetricsOffset, monitoringService, *collectorFillMissingLabels, *monitoringDropDelegatedProjects)
 	if err != nil {
 		log.Error(err)
 		os.Exit(1)
